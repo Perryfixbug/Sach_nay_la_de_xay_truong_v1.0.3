@@ -1,0 +1,9 @@
+.cart_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 30px;
+    margin-bottom: 100px;
+}
+
+

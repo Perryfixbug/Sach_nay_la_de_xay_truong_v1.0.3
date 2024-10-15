@@ -1,0 +1,63 @@
+.validation{
+    margin: 200px auto;
+    font-size: 1rem;
+    color: var(--sub-accent-color);
+}
+
+.form{
+    gap: 20px;
+}
+
+
+.validation input{
+    width: 100%;
+    height: 45px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid var(--sub-accent-color);
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.validation label{
+    font-size: 1.1rem;  
+    overflow: hidden;
+}
+
+.input_site{
+    width: 65%;
+    gap: 5px;
+}
+
+::placeholder{
+    opacity: 0.5;
+}
+
+.validation button{
+    width: 270px;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    background: linear-gradient(to right bottom, #ff5ff2, #7bfe95);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    outline: none;
+}
+
+.forgot{
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (min-width: 900px) {
+    .input_site{
+        width: 40%;
+    }
+    .forgot{
+        width: 40%;
+    }
+}
