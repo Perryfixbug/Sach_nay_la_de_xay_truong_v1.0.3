@@ -6,6 +6,7 @@ import Product from '../../pages/Product'
 import { addToCart, removeFromCart } from '../CartAPI'
 import { motion } from 'framer-motion'
 import clsx from 'clsx'
+import Buy from '../../pages/Buy'
 
 const ProductItem = {
     List({ product}){
@@ -80,7 +81,9 @@ const ProductItem = {
                             <h2 className={styles.price}>{`${product.price}đ`}</h2> 
                             <strong className={styles.date}>Ngày thêm: {product.date}</strong>
                             <strong className={styles.quantity}>Số lượng: {product.quantity}</strong>
-                            <button className={clsx(styles.buy_button, 'clickEffect')}>Mua hàng</button>
+                            <Link to='/buy' element={<Buy />} state={product} 
+                                className={clsx(styles.buy_button, 'clickEffect')}
+                            >Mua hàng</Link>
                         </div>
                     </div>
                 

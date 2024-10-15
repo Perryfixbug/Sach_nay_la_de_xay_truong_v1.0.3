@@ -9,6 +9,7 @@ import Title from '../../components/Title';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const [selected, setSelected] = useState([])
   
   useEffect(()=>{
     const fetchCartItems = async()=>{
@@ -19,25 +20,14 @@ const Cart = () => {
     fetchCartItems()
   }, [])
   
-  const handleAddToCart = async (product) => {
-    const updatedCart = await addToCart(product);
-    setCart(updatedCart);
-  };
+  useEffect(()=>{
 
-  const handleUpdateCart = async (productId, quantity) => {
-    const updatedCart = await updateCartItem(productId, quantity);
-    setCart(updatedCart);
-  };
+  })
 
-  const handleRemoveFromCart = async (productId) => {
-    const updatedCart = await removeFromCart(productId);
-    setCart(updatedCart);
-  };
+  // const handleSelected = ()=>{
+  //   setSelected()
+  // }
 
-  const handleClearCart = async () => {
-    const updatedCart = await clearCart();
-    setCart(updatedCart);
-  };
   return (
     <motion.div 
       className={styles.cart_page}
@@ -50,11 +40,18 @@ const Cart = () => {
     >
       <Title title='Cart'/>
       <div className={styles.cart_list} >
-        {cart.map((cur, index)=>
-          <ProductItem.Cart 
-            key={index} 
-            product={cur}
-          />
+        {cart.map((cur, index)=>(
+            // <label>
+            //   <input  
+            //     type='checkbox' 
+            //     name='buy' 
+            //   />
+                <ProductItem.Cart 
+                  key={index} 
+                  product={cur}
+                />
+            // </label>
+        )
         )}
       </div>
     </motion.div>

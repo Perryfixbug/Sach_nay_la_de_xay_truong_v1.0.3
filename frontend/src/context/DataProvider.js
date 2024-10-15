@@ -2,6 +2,7 @@ import React from 'react'
 import { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { getCartItems } from '../components/CartAPI'
+import { getUserData } from '../components/AccountAPI'
 
 export const DataContext = createContext()
 
@@ -9,7 +10,7 @@ const DataProvider = ({children}) => {
   
   const [products, setProducts] = useState([])
   const [cartItems, setCartItems] = useState([])
-  const [accounts, setAccounts] = useState([])
+  const [userData, setUserData] = useState([])
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5000/product")
@@ -22,18 +23,9 @@ const DataProvider = ({children}) => {
   useEffect(()=>{
     
   const fetchAccount = async () => {
-    try {
-      // Gọi API để xóa session ở phía backend
-      await axios.post('http://127.0.0.1:5000/account/logout');
-
-      // Xóa dữ liệu lưu trữ ở localStorage
-      localStorage.removeItem('mess');
-      localStorage.removeItem('access_token');
-
-      // Chuyển hướng người dùng về trang đăng nhập
-    } catch (error) {
-      console.error('Failed to log out:', error);
-    }
+    axios.defaults.withCredentials = true;
+    const response = await axios.get('http://127.0.0.1:5000/account')
+    setUserData(response.data)
   };
 
     fetchAccount()
@@ -42,7 +34,7 @@ const DataProvider = ({children}) => {
 
   useEffect(()=>{
     const fetchCart = async()=>{
-      const response = await getCartItems()
+      const response = await axios.get('http://127.0.0.1:5000/cart')
       setCartItems(response.data)
     }
     
@@ -51,7 +43,7 @@ const DataProvider = ({children}) => {
   
   
   return (
-    <DataContext.Provider value={[products, accounts, cartItems]}>
+    <DataContext.Provider value={[products, userData, cartItems]}>
       {children}
     </DataContext.Provider>
   )

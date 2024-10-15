@@ -40,6 +40,7 @@
     border: 3px solid #333;
     box-sizing: border-box;
     text-align: center;
+    font-weight: 700;
 }
 
 .add_cart_button{

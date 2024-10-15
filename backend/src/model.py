@@ -12,7 +12,7 @@ class Product(db.Model):
     detail = Column(String(200), nullable=True)
     category = Column(String(50), nullable=False)
     stock = Column(Integer, default=1)
-    #isPopular = Column(Boolean, default=False)
+    isPopular = Column(Boolean, default=False)
     pcarts = relationship('PCart', back_populates='product', lazy=True)
     def to_dict(self):
         return {
@@ -23,8 +23,8 @@ class Product(db.Model):
             'author': self.author,
             'detail': self.detail,
             'category': self.category,
-            'stock': self.stock
-            #'isPopular': self.isPopular
+            'stock': self.stock,
+            'isPopular': self.isPopular
         }
 
 class PCart(db.Model):

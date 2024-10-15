@@ -62,7 +62,9 @@ const Product = () => {
           >
             <img src={assets.add_cart_accent} className='icon' />
           </button>
-          <button className={clsx(styles.buy_button, 'clickEffect')}>Mua hàng</button>
+          <Link to='/buy' element={<Buy />} state={{item}} 
+            className={clsx(styles.buy_button, 'clickEffect')}
+          >Mua hàng</Link>
         </div>
         <div className={styles.detail}>
             <h2>Mô tả sản phẩm</h2>
@@ -89,7 +91,9 @@ const Product = () => {
               >
                 <img src={assets.add_cart_accent} className='icon' />
               </button>
-              <Link to='/buy' element={<Buy />} className={clsx(styles.buy_button, 'clickEffect')}>Mua hàng</Link>
+              <Link to='/buy' element={<Buy />} state={item}
+                className={clsx(styles.buy_button, 'clickEffect')}
+              >Mua hàng</Link>
             </div>
           </div>
         </div>

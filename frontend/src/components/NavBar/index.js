@@ -17,6 +17,15 @@ const NavBar = () => {
   const [value, setValue] = useState('')
   const [heart, setHeart] = useState(false)
   const [clicked, setClicked] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      const cartItems = await getCartItems();
+      setQuantity(cartItems.length);
+    };
+    fetchCartItems();
+  }, []);
   
   const handleClickHeart = () => {
     setHeart(!heart);
@@ -48,8 +57,9 @@ const NavBar = () => {
             <li>
               <Link to='/search' element={<Search />}><img src={assets.search_icon} className='icon'/></Link>
             </li>
-            <li>
+            <li className='pos_relative'>
               <Link to='/cart' element={<Cart />}><img src={assets.shopping_cart_black} className='icon'/></Link>
+              <div className={styles.quantity}>{quantity}</div>
             </li>
             <li>
               <Link to={user !== null ? '/account' : '/validation' } element={user !== null ? <Validation /> : <Account />}><img src={assets.account_black} className='icon'/></Link>  

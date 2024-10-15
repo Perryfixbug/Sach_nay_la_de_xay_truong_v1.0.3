@@ -28,10 +28,11 @@ export const loginUser = async (email, password) => {
 };
 
 // Lấy thông tin người dùng từ localStorage
-export const getUserData = () => {
+export const getUserData = async () => {
+  axios.defaults.withCredentials = true;
   try {
-    const user = JSON.parse(localStorage.getItem('user')); // Lấy và parse thông tin người dùng
-    return user; // Trả về đối tượng người dùng
+    const response = await axios.get(API_URL);    //await đợi đến khi response được return mới thực hiện tiếp
+    return response.data;
   } catch (error) {
     console.error('Error getting user data:', error);
     return null; // Trả về null nếu không có thông tin người dùng

@@ -31,7 +31,7 @@ const Menu = () => {
         <button className={styles['close-btn']} onClick={toggleMenu}>×</button>
         <ul>
           {nav.map(cur=>(
-            <li><Link to={cur} element={<Category />}>{cur}</Link></li>
+            <li key={cur}><Link to={cur} element={<Category />}>{cur}</Link></li>
           ))}
         </ul>
       </motion.div>
