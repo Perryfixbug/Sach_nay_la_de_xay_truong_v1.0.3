@@ -78,7 +78,7 @@ const ProductItem = {
                     </Link>
                         <div className={styles.info}>
                             <h2 className={styles.name}>{product.name}</h2>
-                            <h2 className={styles.price}>{`${product.price}đ`}</h2> 
+                            <h2 className={styles.price}>{`${product.price}`}</h2> 
                             <strong className={styles.date}>Ngày thêm: {product.date}</strong>
                             <strong className={styles.quantity}>Số lượng: {product.quantity}</strong>
                             <Link to='/buy' element={<Buy />} state={product} 
