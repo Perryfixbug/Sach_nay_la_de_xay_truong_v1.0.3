@@ -13,6 +13,7 @@ const Account = () => {
 
   useEffect(() => {
     const fetchAccountData = async () => {
+      axios.defaults.withCredentials = true;
       const storedUser = localStorage.getItem('mess');
       if (storedUser) {
         const res = await axios.get('http://127.0.0.1:5000/account');
@@ -51,7 +52,7 @@ const Account = () => {
       <BackTo />
       <div className={clsx(styles.avatar_site)}>
         <img src={account.img} alt={account.name} className={styles.avatar} />
-        <h1>{account.name}</h1>
+        <h1>{account.username}</h1>
       </div>
       <div className={styles.info_site}>
         <ul className='d-flex-column'>
