@@ -6,7 +6,7 @@ acc_route = Blueprint('acc_route', __name__)
 def signup():
     return current_app.config['AccOption'].add_user()
 
-@acc_route.route('/account', methods=['POST', 'DELETE', 'GET'])
+@acc_route.route('/account', methods=['POST', 'DELETE', 'GET', 'PUT'])
 def account():
     if request.method == 'POST':
         return handle_login()
@@ -16,6 +16,9 @@ def account():
 
     if request.method == 'GET':
         return handle_get_profile()
+    
+    if request.method == 'PUT':
+        return current_app['AccOption'].update_user()
 
 def handle_login():
     mes, err = current_app.config['AccOption'].login()
