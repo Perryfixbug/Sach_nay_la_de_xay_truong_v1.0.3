@@ -5,11 +5,13 @@ import { motion } from 'framer-motion';
 import ProductItem from '../../components/ProductItem';
 import styles from './Cart.module.css';
 import Title from '../../components/Title';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [selectedItems, setSelectedItems] = useState(new Set()); // Sử dụng Set để lưu trữ ID của sản phẩm đã chọn
   const [totalPrice, setTotalPrice] = useState(0); // State để lưu tổng giá trị
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -65,6 +67,19 @@ const Cart = () => {
     calculateTotalPrice(); // Tính tổng giá trị khi có sự thay đổi trong selectedItems
   }, [selectedItems, cart]); // Chạy lại khi selectedItems hoặc cart thay đổi
 
+  const handleCheckout = () => {
+    if (selectedItems.size === 0) {
+      alert('Bạn chưa chọn sản phẩm nào để thanh toán.');
+      return;
+    }
+
+    // Lưu thông tin sản phẩm đã chọn vào localStorage hoặc state management như Redux
+    const selectedProducts = cart.filter(item => selectedItems.has(item.id));
+
+    // Chuyển hướng người dùng tới trang thanh toán, gửi thông tin sản phẩm đã chọn
+    navigate('/buy', { state: { selectedProducts, totalPrice } });
+  };
+
   return (
     <motion.div 
       className={styles.cart_page}
@@ -83,7 +98,7 @@ const Cart = () => {
               onChange={() => handleCheckboxChange(cur.id)} // Gọi hàm xử lý khi checkbox thay đổi
             />
             <ProductItem.Cart product={cur} />
-          </div>
+          </div>  
         ))}
       </div>
       <div className={styles.item_selected}>
@@ -99,7 +114,7 @@ const Cart = () => {
         </button>
         <button 
           className={styles.checkout_button}
-          onClick={() => {/* Chức năng thanh toán */}}
+          onClick={() => handleCheckout()}
         >
           Thanh toán
         </button>

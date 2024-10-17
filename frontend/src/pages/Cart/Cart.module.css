@@ -25,7 +25,7 @@
     background-color: white;
     height: 60px;
     display: flex;
-    width: 80%;
+    width: 80%; 
     justify-content: space-between;
     align-items: center;
     position: fixed;
