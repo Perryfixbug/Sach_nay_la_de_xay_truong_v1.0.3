@@ -21,7 +21,7 @@ const Buy = () => {
   
   // Tính tổng giá trị sản phẩm đã chọn
   const totalProductPrice = selectedProducts.reduce((total, product) => {
-    return total + (parseFloat(product.price.replace(/\./g, '').replace('đ', '').trim()) || 0); // Chuyển đổi chuỗi sang số
+    return total + (parseFloat(product.price.replace(/\./g, '').replace('đ', '').trim()) || 0)*product.quantity; // Chuyển đổi chuỗi sang số
   }, 0);
 
   const totalPrice = totalProductPrice + shippingFee; // Tổng tiền thanh toán
